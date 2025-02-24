@@ -22,20 +22,20 @@ public class UserService {
 	}
 	
 	public User findById(String id) {
-		Optional<User> obj = userRepository.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException("Id de usuário não encontrado"));
+		Optional<User> user = userRepository.findById(id);
+		return user.orElseThrow(() -> new ObjectNotFoundException("Id de usuário não encontrado"));
 	}
 	
 	public List<User> findByName(String name) {
-		List<User> user = userRepository.findByName(name);
-		if (user != null ) {
-			return user;
+		List<User> listUsers = userRepository.findByName(name);
+		if (listUsers != null ) {
+			return listUsers;
 		}
 		throw new ObjectNotFoundException("Nome de usuário não encontrado");
 	}
 	
-	public User insert(User obj) {
-		return userRepository.insert(obj);
+	public User insert(User user) {
+		return userRepository.insert(user);
 	}
 	
 	public void deleteById(String id) {
@@ -51,8 +51,8 @@ public class UserService {
 	
 
 	
-	public User fromDTO(UserDTO objDto) {
-		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
+	public User fromDTO(UserDTO userDto) {
+		return new User(userDto.getId(), userDto.getName(), userDto.getEmail());
 	}
 	
 }

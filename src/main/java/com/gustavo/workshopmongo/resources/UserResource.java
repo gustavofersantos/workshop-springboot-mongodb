@@ -28,32 +28,32 @@ public class UserResource {
 	
 	@GetMapping
 	public ResponseEntity<List<UserDTO>> findAll() {
-		List<User> list = userService.findAll();
-		List<UserDTO> listDto = list.stream().map(UserDTO::new).collect(Collectors.toList());
+		List<User> listUsers = userService.findAll();
+		List<UserDTO> listDto = listUsers.stream().map(UserDTO::new).collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@GetMapping(value="/id:{id}")
 	public ResponseEntity<UserDTO> findById(@PathVariable String id) {
-		User obj = userService.findById(id);
+		User user = userService.findById(id);
 		
-		return ResponseEntity.ok().body(new UserDTO(obj));
+		return ResponseEntity.ok().body(new UserDTO(user));
 	}
 	
 	@GetMapping(value="/name:{name}")
 	public ResponseEntity<List<UserDTO>> findByName(@PathVariable String name) {
-		List<User> list = userService.findByName(name);
-		List<UserDTO> listDto = list.stream().map(UserDTO::new).collect(Collectors.toList());
+		List<User> listUsers = userService.findByName(name);
+		List<UserDTO> listDto = listUsers.stream().map(UserDTO::new).collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody UserDTO objDto) {
-		User obj = userService.fromDTO(objDto);
-		obj = userService.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+	public ResponseEntity<Void> insert(@RequestBody UserDTO userDto) {
+		User user = userService.fromDTO(userDto);
+		user = userService.insert(user);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
 	}
