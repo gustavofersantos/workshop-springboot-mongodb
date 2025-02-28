@@ -76,5 +76,6 @@ Buscar posts com filtro avançado: GET /posts/fullsearch?text={texto}&minDate={d
 
 -- Para testar as requisições, você pode utilizar o Postman ou a ferramenta Insomnia.
 
+---
 
-## Desenvolvido por Gustavo F. Santos durante curso de Java Completo do professor Nelio Alves.
+### Desenvolvido por Gustavo F. Santos durante curso de Java Completo do professor Nelio Alves.
